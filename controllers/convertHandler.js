@@ -1,52 +1,50 @@
 /*
-*
-*
-*       Complete the handler logic below
-*       
-*       
-*/
+ *
+ *
+ *       Complete the handler logic below
+ *
+ *
+ */
 
 function ConvertHandler() {
-  
   this.getNum = function(input) {
-    var result;
-    
+    let result;
+
     return result;
   };
-  
+
   this.getUnit = function(input) {
-    var result;
-    
+    let result;
+
     return result;
   };
-  
+
   this.getReturnUnit = function(initUnit) {
-    var result;
-    
+    let result;
+
     return result;
   };
 
   this.spellOutUnit = function(unit) {
-    var result;
-    
+    let result;
+
     return result;
   };
-  
+
   this.convert = function(initNum, initUnit) {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    var result;
-    
+    let result;
+
     return result;
   };
-  
+
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    var result;
-    
+    let result;
+
     return result;
   };
-  
 }
 
 module.exports = ConvertHandler;
