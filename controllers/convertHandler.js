@@ -23,20 +23,18 @@ function ConvertHandler() {
       notNumbers = true;
       result = 1;
       return result;
-    } if ( result[0].split('/').length - 1 > 1 ) {
-      
+    }
+    if (result[0].split("/").length - 1 > 1) {
       return "invalid number";
-      
     }
 
     const toDecimal = result[0].split("/");
 
-    const value = toDecimal.length > 1
-      ? toDecimal[0] / toDecimal[1]
-      : Number(toDecimal[0]);
-    
+    const value =
+      toDecimal.length > 1 ? toDecimal[0] / toDecimal[1] : Number(toDecimal[0]);
+
     notNumbers = false;
-    
+
     return Number.isNaN(value) ? "invalid number" : value;
   };
 
@@ -44,7 +42,8 @@ function ConvertHandler() {
     const result = input.match(/[a-z]+|[^a-z]+/gi);
     if (notNumbers) {
       return result[0];
-    } if (
+    }
+    if (
       result[1] === "L" ||
       result[1] === "gal" ||
       result[1] === "kg" ||
@@ -53,8 +52,8 @@ function ConvertHandler() {
       result[1] === "km"
     ) {
       return result[1];
-      
-    } else return "invalid unit";
+    }
+    return "invalid unit";
   };
 
   this.getReturnUnit = initUnit => {
