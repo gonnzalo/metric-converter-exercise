@@ -17,6 +17,16 @@ module.exports = app => {
     const initNum = convertHandler.getNum(input);
     const initUnit = convertHandler.getUnit(input);
     const returnNum = convertHandler.convert(initNum, initUnit);
+    if (initNum === "invalid number" && initUnit === "invalid unit") {
+      return res.send("invalid number and unit");
+    }
+    if (initNum === "invalid number") {
+      res.send("invalid number");
+    }
+    if (initUnit === "invalid unit") {
+      return res.send("invalid unit");
+    }
+
     const returnUnit = convertHandler.getReturnUnit(initUnit);
     const toString = convertHandler.getString(
       initNum,
@@ -25,6 +35,12 @@ module.exports = app => {
       returnUnit
     );
 
-    res.send({ initNum, initUnit, returnNum, returnUnit, string: toString });
+    return res.send({
+      initNum,
+      initUnit,
+      returnNum,
+      returnUnit,
+      string: toString
+    });
   });
 };

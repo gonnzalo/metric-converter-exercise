@@ -7,7 +7,8 @@
  */
 
 function ConvertHandler() {
-  let notNumbers = false;
+  let notNumbers;
+
   this.getNum = input => {
     let result = input.match(/[a-z]+|[^a-z]+/gi);
 
@@ -22,22 +23,38 @@ function ConvertHandler() {
       notNumbers = true;
       result = 1;
       return result;
+    } if ( result[0].split('/').length - 1 > 1 ) {
+      
+      return "invalid number";
+      
     }
 
     const toDecimal = result[0].split("/");
 
-    return toDecimal.length > 1
+    const value = toDecimal.length > 1
       ? toDecimal[0] / toDecimal[1]
       : Number(toDecimal[0]);
+    
+    notNumbers = false;
+    
+    return Number.isNaN(value) ? "invalid number" : value;
   };
 
   this.getUnit = input => {
     const result = input.match(/[a-z]+|[^a-z]+/gi);
     if (notNumbers) {
       return result[0];
-    }
-
-    return result[1];
+    } if (
+      result[1] === "L" ||
+      result[1] === "gal" ||
+      result[1] === "kg" ||
+      result[1] === "lbs" ||
+      result[1] === "mi" ||
+      result[1] === "km"
+    ) {
+      return result[1];
+      
+    } else return "invalid unit";
   };
 
   this.getReturnUnit = initUnit => {
@@ -65,7 +82,6 @@ function ConvertHandler() {
       default:
         result = "invalid unit";
     }
-
     return result;
   };
 
@@ -86,7 +102,7 @@ function ConvertHandler() {
         result = "kilograms";
         break;
       case "mi":
-        result = "milles";
+        result = "miles";
         break;
       case "km":
         result = "kilometers";
@@ -108,11 +124,6 @@ function ConvertHandler() {
 
     let result;
 
-    if (Number.isNaN(initNum)) {
-      result = "invalid number";
-      return result;
-    }
-
     switch (initUnit) {
       case "gal":
         result = initNum * galToL;
@@ -133,9 +144,8 @@ function ConvertHandler() {
         result = initNum * kmToMi;
         break;
       default:
-        result = "invalid number";
+        result = "invalid unit";
     }
-
     return result;
   };
 
